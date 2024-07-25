@@ -16,18 +16,42 @@ const bands = [
 ];
 
 function stripArticle(bandName) {
-    return bandName.replace(/^(a |an |the )/i, '').trim();
+    // Words to ignore
+    const ignoreWords = ['The', 'A', 'An'];
+    
+    // Split the band name into words
+    const words = bandName.split(' ');
+    
+    // Check if the first word is one of the ignore words
+    if (ignoreWords.includes(words[0])) {
+        // Remove the first word and join the rest
+        return words.slice(1).join(' ');
+    } else {
+        // Return the original name if it doesn't start with an ignore word
+        return bandName;
+    }
 }
 
-const sortedBands = bands.sort((a, b) => {
-    const bandA = stripArticle(a).toLowerCase();
-    const bandB = stripArticle(b).toLowerCase();
-    return bandA.localeCompare(bandB);
+bands.sort((a, b) => {
+    // Get the band names without the starting articles
+    const bandA = stripArticle(a);
+    const bandB = stripArticle(b);
+    
+    // Compare the stripped names
+    if (bandA < bandB) {
+        return -1;
+    } else if (bandA > bandB) {
+        return 1;
+    } else {
+        return 0;
+    }
 });
+
 
 const bandList = document.getElementById('band');
 
-sortedBands.forEach(band => {
+// Populate the <ul> with sorted bands
+bands.forEach(band => {
     const li = document.createElement('li');
     li.textContent = band;
     bandList.appendChild(li);
