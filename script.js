@@ -1,5 +1,5 @@
 //your JS code here. If required.
-const bands = [
+const bandss = [
     'The Plot in You', 
     'The Devil Wears Prada', 
     'Pierce the Veil', 
@@ -48,10 +48,10 @@ bands.sort((a, b) => {
 });
 
 
-const bandList = document.getElementById('band');
+const bandList = document.getElementById('bands');
 
 // Populate the <ul> with sorted bands
-bands.forEach(band => {
+bandss.forEach(band => {
     const li = document.createElement('li');
     li.textContent = band;
     bandList.appendChild(li);
