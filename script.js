@@ -32,7 +32,7 @@ function stripArticle(bandName) {
     }
 }
 
-bands.sort((a, b) => {
+bandss.sort((a, b) => {
     // Get the band names without the starting articles
     const bandA = stripArticle(a);
     const bandB = stripArticle(b);
